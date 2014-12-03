@@ -1,7 +1,5 @@
 package com.io.gastrIO.form;
 
-import java.util.Date;
-
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -16,8 +14,14 @@ public class RegisterForm {
 	@Size(min=1, max=30, message="Błędne nazwisko")
     private String lname;
 
-	@Size(min=1, max=10, message="Zła data")
-	private Date date;
+	@Size(min=1, max=2, message="Zła data")
+	private int day;
+
+    @Size(min=1, max=2, message="Zła data")
+	private int month;
+
+	@Size(min=1, max=2, message="Zła data")
+	private int year;
 
 	@Email(message="Błędny email")
 	private String email;
@@ -43,14 +47,6 @@ public class RegisterForm {
         this.fname = fname;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -66,4 +62,36 @@ public class RegisterForm {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+
+    public int getDay() {
+        return day;
+    }
+
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+
+    public int getMonth() {
+        return month;
+    }
+
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+
+    public int getYear() {
+        return year;
+    }
+
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
 }

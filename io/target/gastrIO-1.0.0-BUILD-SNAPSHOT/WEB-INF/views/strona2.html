@@ -1,0 +1,112 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Strona 2</title>
+
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap-theme.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/core.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrapValidator.css}" />
+
+
+</head>
+<body>
+	  <div th:replace="header :: header"></div>
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Panel rejestracyjny</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row"
+						style="margin-left: 10px; margin-right: 10px; text-align: center">
+
+						<form th:action="@{/strona2}" th:object="${secondForm}"
+							method="post" class="form-horizontal" id="rejestracja">
+							<div class="form-group" id="birthday-form">
+								<label class="col-md-4 control-label" for="line">Data
+									urodzenia:</label>
+								<div class="col-md-8 row form-group" id="line">
+									<div class="form-group col-sm-2 birthday-form"
+										style="margin-left: 5px; margin-right: 5px;" id="day">
+										<input type="text" class="form-control" name="day"
+											placeholder="DD" maxlength="2" th:value="${day}" />
+											<label th:if="${#fields.hasErrors('day')}" th:errors="*{day}">Error Input</label>
+
+									</div>
+
+
+									<div class="form-group col-sm-2 birthday-form"
+										style="margin-left: 5px; margin-right: 5px;" id="month">
+										<input type="text" class="form-control" name="month"
+											placeholder="MM" maxlength="2" th:value="${month}" />
+											<label th:if="${#fields.hasErrors('month')}" th:errors="*{month}">Error Input</label>
+
+									</div>
+									<div class="form-group  col-sm-2 birthday-form"
+										style="margin-left: 5px; margin-right: 5px;" id="year">
+										<input type="text" class="form-control" name="year"
+											placeholder="YYYY" maxlength="4" th:value="${year}" />
+											<label th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Error Input</label>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-4 control-label">Województwo:</label>
+								<div class="col-md-3">
+									<select class="form-control" id="region" name="region">
+										<option value="0">Wybierz województwo</option>
+										<div th:each="reg : ${regions}">
+											<div th:switch="${reg}">
+												<option  th:case="${region}" th:text="${reg}" th:value="${reg}" th:attr="selected=true"/>
+												<option th:case="*" th:text="${reg}" th:value="${reg}"/>
+											</div>
+										</div>
+									</select>
+									<label th:if="${#fields.hasErrors('region')}" th:errors="*{region}">Error Input</label>
+
+								</div>
+							</div>
+
+							<div class="form-group"
+								style="margin-left: 10px; margin-right: 10px; text-align: center">
+								<div class="btn-group btn-group-lg">
+									<button type="submit" class="btn btn-primary" id="next">Dalej</button>
+									<button type="button" class="btn block" id="back">Wstecz</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/resources/js/jquery-1.11.1.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/resources/js/bootstrap.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/resources/js/bootstrapValidator.js}"></script>
+	<script type="text/javascript" th:src="@{/resources/js/moment.min.js}"></script>
+	<script type="text/javascript" th:src="@{/resources/js/strona2.js}"></script>
+
+</body>
+</html>
