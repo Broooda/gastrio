@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Dodawanie Nowego Użytkownika</title>
+
+<link rel="stylesheet" type="text/css" media="all"
+	href="/resources/css/bootstrap-theme.css"
+	th:href="@{/resources/css/bootstrap-theme.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="/resources/css/bootstrap-theme.min.css"
+	th:href="@{/resources/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="/resources/css/bootstrap.css"
+	th:href="@{/resources/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="/resources/css/bootstrap.min.css"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="/resources/css/core.css" th:href="@{/resources/css/core.css}" />
+<style>
+#nav_user {
+	color: #ffff00;
+}
+</style>
+
+</head>
+
+<body>
+	<div th:replace="header :: header"></div>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Panel dodawania nowego użytkownika</h3>
+				</div>
+				<div class="panel-body">
+					<!-- Formularz odpowiedzialny za edycje uzytkownika -->
+					<form action="#" th:action="@{/}" id="adduser" method="post"
+						class="form-horizontal " th:object="${registerForm}">
+						<!-- ID uzytkownika -->
+						<div class="form-group">
+							<label class="col-md-4 control-label">Email </label>
+							<div class="col-md-4">
+								<!-- Adres e-mail -->
+								<input th:field="*{email}" class="form-control email" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Hasło </label>
+							<div class="col-md-4">
+								<!-- hasło -->
+								<input type="password" th:field="*{password}" autocomplete="off" class="form-control password" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Imię</label>
+							<div class="col-md-4">
+								<!-- Imię -->
+								<input class="form-control firstName" th:field="*{fname}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nazwisko</label>
+							<div class="col-md-4">
+								<!-- Nazwisko -->
+								<input class="form-control lastName" th:field="*{lname}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Data Urodzenia</label>
+							<div class="col-md-4">
+								<input class="form-control Date" th:field="*{date}" />
+							</div>
+						</div>
+						<!-- Przyciski cofania i zapisujący użytkownika po dodaniu -->
+						<div class="form-group">
+							<div class="col-md-8" align="right">
+								<button type="reset" class="btn btn-default" name="back"
+									id="wstecz">Wstecz</button>
+								<button class="btn btn-primary" type="submit" id="register"
+									name="register">Zatwierdź</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container">
+		<!-- Example row of columns -->
+		<div class="row"></div>
+		<footer>
+			<p>IO 2014</p>
+		</footer>
+	</div>
+</body>
+</html>
