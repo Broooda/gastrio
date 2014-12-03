@@ -26,7 +26,7 @@ public class RegisterController {
         return "add_user";
     }
 
-    @RequestMapping(value = "/add_user",  method = RequestMethod.POST)
+    @RequestMapping(value = "/register",  method = RequestMethod.POST)
     public String saveUser(final Model model, @ModelAttribute final RegisterForm registerForm) {
         return "login";
     }

@@ -39,58 +39,50 @@
 				</div>
 				<div class="panel-body">
 					<!-- Formularz odpowiedzialny za edycje uzytkownika -->
-					<form action="#" th:action="@{/add_user}" id="adduser" method="post"
+					<form action="#" th:action="@{/}" id="adduser" method="post"
 						class="form-horizontal " th:object="${registerForm}">
 						<!-- ID uzytkownika -->
 						<div class="form-group">
-							<label class="col-md-4 control-label"  th:text="#{add_user.email}"> </label>
+							<label class="col-md-4 control-label">Email </label>
 							<div class="col-md-4">
 								<!-- Adres e-mail -->
 								<input th:field="*{email}" class="form-control email" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label" th:text="#{add_user.password}"></label>
+							<label class="col-md-4 control-label">Hasło </label>
 							<div class="col-md-4">
 								<!-- hasło -->
 								<input type="password" th:field="*{password}" autocomplete="off" class="form-control password" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label" th:text="#{add_user.first_name}"></label>
+							<label class="col-md-4 control-label">Imię</label>
 							<div class="col-md-4">
 								<!-- Imię -->
 								<input class="form-control firstName" th:field="*{fname}" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label" th:text="#{add_user.last_name}"></label>
+							<label class="col-md-4 control-label">Nazwisko</label>
 							<div class="col-md-4">
 								<!-- Nazwisko -->
 								<input class="form-control lastName" th:field="*{lname}" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label" th:text="#{add_user.birth_date}"></label>
-							<div class="col-md-8 row form-group" id="line">
-								<div class="form-group col-sm-2 birthday-form has-feedback"  style="margin-left: 0px; padding-right: px;">
-									<input th:field="*{day}" class="form-control" placeholder="DD" maxlength="2"/>
-								</div>
-								<div class="form-group col-sm-2 birthday-form has-feedback" style="margin-left: 0px; padding-left: 5px; padding-right: px;">
-									<input th:field="*{month}" class="form-control" placeholder="MM" maxlength="2" />
-								</div>
-								<div class="form-group col-sm-3 birthday-form has-feedback" style="margin-left: 0px; padding-left: 5px; padding-right: -5px;" >
-									<input th:field="*{year}" class="form-control" placeholder="YYYY" maxlength="4" />
-								</div>
+							<label class="col-md-4 control-label">Data Urodzenia</label>
+							<div class="col-md-4">
+								<input class="form-control Date" th:field="*{date}" />
 							</div>
 						</div>
 						<!-- Przyciski cofania i zapisujący użytkownika po dodaniu -->
 						<div class="form-group">
 							<div class="col-md-8" align="right">
 								<button type="reset" class="btn btn-default" name="back"
-									id="back" th:text="#{universal.back}"></button>
+									id="wstecz">Wstecz</button>
 								<button class="btn btn-primary" type="submit" id="register"
-									name="register" th:text="#{universal.save}"></button>
+									name="register">Zatwierdź</button>
 							</div>
 						</div>
 					</form>

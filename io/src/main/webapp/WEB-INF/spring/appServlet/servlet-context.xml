@@ -19,8 +19,7 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources
 		in the /WEB-INF/views directory -->
-	<beans:bean id="templateResolver"
-		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+	<beans:bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".html" />
 		<beans:property name="characterEncoding" value="UTF-8" />
@@ -31,25 +30,19 @@
 	<beans:bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
 		<beans:property name="templateResolver" ref="templateResolver" />
 		<beans:property name="additionalDialects">
-			<beans:set>
-				<beans:bean
-					class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect" />
-			</beans:set>
+		<beans:set>
+		<beans:bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect"/>
+		</beans:set>
 		</beans:property>
 	</beans:bean>
 
-	<beans:bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<beans:property name="location">
 			<beans:value>classpath:persistance.properties</beans:value>
 		</beans:property>
 	</beans:bean>
-	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<beans:property name="basename" value="messages" />
-	</beans:bean>
 
-	<beans:bean
-		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	<beans:bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<beans:property name="viewResolvers">
 			<beans:list>
 				<!-- Used here for 'xml' and 'atom' views -->
