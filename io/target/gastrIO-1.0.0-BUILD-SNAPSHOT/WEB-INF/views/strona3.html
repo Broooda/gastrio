@@ -1,0 +1,185 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap-theme.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/core.css}" />
+</head>
+<body>
+
+	  <div th:replace="header :: header"></div>
+	      <div class="jumbotron">
+         <div class="container">
+           <div class="panel panel-primary">
+               <div class="panel-heading">
+                  <h3 class="panel-title">Panel rejestracyjny</h3>
+               </div>
+               <div class="panel-body">
+                  <div class="container">
+                     <form action="#" th:action="@{/strona3}" th:object="${thirdForm}" method="post" class="form-horizontal">
+                        <div class="form-group">
+                           <label class="col-md-3 control-label">Rodzaj Biletu</label>
+                           <div class="col-md-3">
+                              <div class="radio">
+                              <div th:switch="${typeOfTransport}">
+                              	<div th:case="airplane">
+                                 <input type="radio" id="radio1" value="airplane" name="typeOfTransport" th:checked = "${true}"  /> Lotniczy
+                                </div>
+                                <div th:case="*">
+								<input type="radio" id="radio1" value="airplane" name="typeOfTransport" th:checked = "${true}"  /> Lotniczy
+                                </div>
+                              </div>
+                              	<div class="checkbox">
+										<div th:each="mapEntry:${infoMap}">
+												<div th:switch="${mapEntry.key}">
+													<div th:case="Bagaz">
+														<div th:switch="${mapEntry.value}">
+																<div th:case="true">
+																	<label>
+                                   										 <input type="checkbox" id="check_luggage" value="true" name="luggage" th:checked="${true}" />
+                                   										  Dodatkowy bagaż
+                                    								</label>
+																</div>
+																<div th:case="false">
+																<label>	<input type="checkbox" id="check_luggage" value="true" name="luggage" th:checked="${false}" />
+                                   										  Dodatkowy bagaż
+                                    								</label>
+																</div>
+														</div>
+													</div>
+												</div>
+										</div>
+								</div>
+
+                                 <div class="checkbox">
+										<div th:each="mapEntry:${infoMap}">
+												<div th:switch="${mapEntry.key}">
+													<div th:case="Jedzenie">
+														<div th:switch="${mapEntry.value}">
+																<div th:case="true">
+																	<label>
+                                   										 <input type="checkbox" id="check_food" name="food"  th:checked="${true}"/> Posiłek
+                                    								</label>
+																</div>
+																<div th:case="false">
+																<label>
+																		<input type="checkbox" id="check_food" name="food"  th:checked="${false}"/> Posiłek
+                                            					</label>
+																</div>
+														</div>
+													</div>
+												</div>
+										</div>
+								</div>
+
+                                   <div class="checkbox">
+										<div th:each="mapEntry:${infoMap}">
+												<div th:switch="${mapEntry.key}">
+													<div th:case="Okna">
+														<div th:switch="${mapEntry.value}">
+																<div th:case="true">
+																	<label>
+                                   										<input type="checkbox" id="check_window" name="window" th:checked="${true}"/> Miejsce przy oknie
+                                    								</label>
+																</div>
+																<div th:case="false">
+																<label>
+																		<input type="checkbox" id="check_window" name="window"  th:checked="${false}"/> Miejsce przy oknie
+                                            					</label>
+																</div>
+														</div>
+													</div>
+												</div>
+										</div>
+								</div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="radio">
+                              <div th:switch="${typeOfTransport}">
+                              	<div th:case="train">
+									<input type="radio" id="radio2" value="train" name="typeOfTransport" th:checked="${true}"/> Pociąg
+                                </div>
+                                <div th:case="*">
+									<input type="radio" id="radio2" value="train" name="typeOfTransport" th:checked="${false}"/> Pociąg
+                                </div>
+                              </div>
+
+
+                                 <select class="form-control" id="select_class" name="ClassNumber">
+                                 	   	<option th:each="p:${classList}" th:text="${p.value}" th:value="${p.key}" th:selected="${p.key}==${classNumber}"></option>
+                                 </select>
+                                 <label th:if="${#fields.hasErrors('classNumber')}" th:errors="*{classNumber}">Error Input</label>
+
+
+										<div class="checkbox">
+										<div th:each="mapEntry:${infoMap}">
+												<div th:switch="${mapEntry.key}">
+													<div th:case="Przesiadka">
+														<div th:switch="${mapEntry.value}">
+																<div th:case="true">
+																	<label><input type="checkbox" id="check_change"
+																		name="change" th:checked="${true}" /> Przesiadka</label>
+																</div>
+																<div th:case="false">
+																<label><input type="checkbox" id="check_change"
+																		name="change" th:checked="${false}" /> Przesiadka</label>
+																</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="checkbox">
+										<div th:each="mapEntry:${infoMap}">
+												<div th:switch="${mapEntry.key}">
+													<div th:case="Rower">
+														<div th:switch="${mapEntry.value}">
+																<div th:case="true">
+																	<label> <input type="checkbox" id="check_bike" name="bike" th:checked="${true}" />
+																	 Przewóz roweru </label>
+																</div>
+																<div th:case="false">
+																<label> <input type="checkbox" id="check_bike" name="bike" th:checked="${false}" />
+																	 Przewóz roweru </label>
+																</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+                           </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 10px; margin-right: 10px;text-align:center">
+                           <div class="btn-group btn-group-lg">
+                              <button type="submit" id="btnGo" class="btn btn-primary">Dalej</button>
+                              <button type="reset" class="btn block" id="btnClear">Wstecz</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+<script th:src="@{/resources/js/jquery-1.11.1.js}"></script>
+<script th:src="@{/resources/js/jquery-validate.js}"></script>
+<script th:src="@{/resources/js/bootstrap.min.js}"></script>
+<script th:src="@{/resources/js/bootstrapValidator.js}"></script>
+<script th:src="@{/resources/js/strona3.js}"></script>
+
+</body>
+</html>
