@@ -1,0 +1,124 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Strona 1</title>
+
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap-theme.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/resources/css/core.css}" />
+
+
+</head>
+<body>
+	  <div th:replace="header :: header"></div>
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Panel rejestracyjny</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row"
+						style="margin-left: 10px; margin-right: 10px; text-align: center">
+
+						<table class="table table-striped">
+							<tr>
+								<td>Imię:</td>
+								<td>
+									<p th:text="${fname}"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>Nazwisko:</td>
+								<td>
+									<p th:text="${lname}"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>Drugie Imię:</td>
+								<td>
+									<p th:text="${sname}"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>Płeć:</td>
+								<td>
+									<p th:text="${gender}"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>Data urodzenia:</td>
+								<td>
+									<p th:text="${birthdate}"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>Województwo:</td>
+								<td>
+									<p th:text="${region}"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>Rodzaj biletu:</td>
+								<td>
+									<p th:text="${typeOfTransport}"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>Informacje dodatkowe:</td>
+								<td>
+									<div th:each="mapEntry:${infoMap}">
+										<div th:switch="${mapEntry.value}">
+											<p th:case="true" th:text="${mapEntry.key}">error</p>
+											<p th:case="*"></p>
+										</div>
+									</div> <!--  <p id="info" th:text ="${mapEntry.key}"></p> --> <!-- <p id="info"></p> -->
+								</td>
+							</tr>
+
+
+						</table>
+						<form th:action="@{/podsumowanie}" th:object="${firstForm}"
+							method="post" class="form-horizontal" id="rejestracja">
+							<div class="btn-group btn-group-lg">
+
+								<button type="submit" onclick="success()"
+									class="btn btn-primary">Zakończ</button>
+								<button type="button" class="btn block" onclick="back()">Wstecz</button>
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<!-- Example row of columns -->
+		<div class="row"></div>
+		<footer>
+			<p>Company 2014</p>
+		</footer>
+	</div>
+
+
+	<script th:src="@{/resources/js/jquery-1.11.1.js}"></script>
+	<script th:src="@{/resources/js/jquery-validate.js}"></script>
+	<script th:src="@{/resources/js/bootstrap.min.js}"></script>
+	<script th:src="@{/resources/js/bootstrapValidator.js}"></script>
+	<script th:src="@{/resources/js/podsumowanie.js}"></script>
+</body>
+</html>
